@@ -8,7 +8,7 @@
          }
       
         }
-}
+
 
       stage("Carregando dependencias."){
            sh ' pip install pywinrm --user'
