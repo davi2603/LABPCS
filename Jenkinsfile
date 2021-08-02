@@ -1,7 +1,4 @@
 
-
-
-try {
     stage('Validar Campos') {
       
       if (params.Ambiente == '') {
@@ -24,6 +21,7 @@ stage('Clonando repositório do GIT'){
     git branch: 'main', 
     credentialsId: 'root',
     url: 'git@github.com:davi2603/LABPCS.git'}
+}
     
     
      
