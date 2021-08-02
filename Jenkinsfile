@@ -1,4 +1,4 @@
-
+node {
     stage('Validar Campos') {
       
       if (params.Ambiente == '') {
@@ -18,7 +18,7 @@ stage('Clonando repositório do GIT'){
     url: 'git@github.com:davi2603/LABPCS.git'}
 }
 
-
+}
     
     
      
