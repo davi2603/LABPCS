@@ -9,11 +9,6 @@
       
         }
 
-
-      stage("Carregando dependencias."){
-           sh ' pip install pywinrm --user'
-      }
-  
   
 
 stage('Clonando repositório do GIT'){    
@@ -22,6 +17,8 @@ stage('Clonando repositório do GIT'){
     credentialsId: 'root',
     url: 'git@github.com:davi2603/LABPCS.git'}
 }
+
+
     
     
      
