@@ -14,7 +14,7 @@ node {
 stage('Clonando repositório do GIT'){    
   if (params.Ambiente == 'dev') {    
     git branch: 'main', 
-    credentialsId: 'root',
+    credentialsId: 'davi2603',
     url: 'git@github.com:davi2603/LABPCS.git'}
 }
 
