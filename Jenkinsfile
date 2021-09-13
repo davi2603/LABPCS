@@ -17,8 +17,13 @@ stage('Clonando repositório do GIT'){
     credentialsId: '7ada7a7d-26d1-4118-bcce-ee0171b42f62',
     url: 'git@github.com:davi2603/LABPCS.git'}
 }
-
-}
+    
+    
+stage("Deploy Ansible - Homologação") {    
+    withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {  
+          sh "ansible-playbook   inventory/pcs_automacao.yml  -i  group_vars/all.yml" 
+    }
+      
     
     
      
