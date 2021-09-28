@@ -2,7 +2,7 @@ all:
   children:   
     webservers:    
       hosts: 
-        192.168.214.1:
+        192.168.0.12:
            ansible_user: ansible_user   
            ansible_password: Mudar@1234   
            ansible_port: 5985   
