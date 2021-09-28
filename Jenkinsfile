@@ -20,7 +20,8 @@ stage('Clonando repositório do GIT'){
     
     
 stage("Deploy Ansible - Homologação") {    
-    withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {  
+    withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh " ansible-galaxy collection install community.windows"
           sh "ansible-playbook   ansible/inventory/pcs_automacao.yml  -i  ansible/group_vars/all.yml" 
     }
     
