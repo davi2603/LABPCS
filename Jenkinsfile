@@ -21,7 +21,7 @@ stage('Clonando repositório do GIT'){
     
 stage("Deploy Ansible - Homologação") {    
     withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {  
-          sh "ansible-playbook   inventory/pcs_automacao.yml  -i  group_vars/all.yml" 
+          sh "ansible-playbook   /LABPCS/ansibleinventory/pcs_automacao.yml  -i  group_vars/all.yml" 
     }
     
 }
