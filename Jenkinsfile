@@ -22,13 +22,13 @@ stage('Clonando repositório do GIT'){
     git branch: 'main', 
     credentialsId: '7ada7a7d-26d1-4118-bcce-ee0171b42f62',
     url: 'git@github.com:davi2603/LABPCS.git'}
-}    
+    
 
   if (params.Ambiente == 'prod') {    
     git branch: 'main', 
     credentialsId: '7ada7a7d-26d1-4118-bcce-ee0171b42f62',
     url: 'git@github.com:davi2603/LABPCS.git'}
-}
+
 
 
     
@@ -43,7 +43,9 @@ stage("Iniciando Deploy"){
 }
       
 }   
-}    
+}
+}
+
      
  
  
