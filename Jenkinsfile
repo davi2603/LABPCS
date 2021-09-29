@@ -33,6 +33,14 @@ stage('Clonando repositório do GIT'){
 
     
 stage("Iniciando Deploy"){
+     if (params.Ambiente == 'qa') {
+            stage("Deploy Ansible - Homologação") {    
+                withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                      sh " ansible-galaxy collection install community.windows"
+                      sh "ansible-playbook   ansible/inventory/pcs_automacao.yml  -i  ansible/group_vars/all.yml" }
+                      }
+        }      
+    
     if (params.Ambiente == 'prod') {
             stage("Deploy Ansible - Produção") {    
                withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
