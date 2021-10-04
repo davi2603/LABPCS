@@ -65,7 +65,7 @@
       
   - name: Run basic PowerShell script
     ansible.windows.win_powershell:
-      script: C:\SCRIPTS\Nova_pasta\JDPCS.ps1
+      script: C:\SCRIPTS\Nova_pasta\JDPCSDEPLOY.ps1
       
   - name: Run basic PowerShell script
     ansible.windows.win_powershell:
