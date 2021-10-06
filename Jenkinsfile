@@ -3,7 +3,7 @@ node {
       
       
     stage('teste') {   
-       print "DEBUG: parameter Ambiente = ${env.Ambiente}"
+       print "DEBUG: parameter Ambient = ${env.Ambiente}"
      }
           
       
