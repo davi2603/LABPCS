@@ -7,7 +7,7 @@
     ansible.windows.win_powershell:
       script: C:\SCRIPTS\Nova_pasta\Sem título4.ps1 
       parameters:
-        $param1: {{ name }}
+        $param1: "{{ name }}"
           
       
      
