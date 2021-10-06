@@ -1,5 +1,10 @@
 node {
     
+    stage('teste') {
+        
+    }
+    
+    
     stage('Validar Campos') {
       
       if (params.Ambiente == '') {
