@@ -24,7 +24,7 @@ stage('Clonando repositório do GIT'){
     url: 'git@github.com:davi2603/LABPCS.git'}
     
 
-  if (params.Ambiente == 'prod') {    
+  if (params.Ambiente == 'qa') {    
     git branch: 'qa', 
     credentialsId: '7ada7a7d-26d1-4118-bcce-ee0171b42f62',
     url: 'git@github.com:davi2603/LABPCS.git'}
@@ -33,8 +33,8 @@ stage('Clonando repositório do GIT'){
 
     
 stage("Iniciando Deploy"){
-    if (params.Ambiente == 'dev') {
-            stage("Deploy Ansible - Homologação") {    
+    if (params.Ambiente == 'qa') {
+            stage("Deploy Ansible - Homologaçãoqa") {    
                 withCredentials([usernamePassword(credentialsId: 'ansible_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                       sh " ansible-galaxy collection install community.windows"
                       sh "ansible-playbook   ansible/inventory/pcs_automacao.yml  -i  ansible/group_vars/all.yml" 
