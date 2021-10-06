@@ -23,7 +23,7 @@
 
   - name: Copy folder to C:\Temp (results in C:\Temp\temp_files)
     ansible.windows.win_copy:
-      src: 'C:\JDPCS'
+      src: 'C:\JDPCS\'
       dest: 'C:\Backup_{{ansible_date_time.date}}'
       remote_src: yes
 
