@@ -1,8 +1,12 @@
 node {
     
-    stage('teste') {
+  
         
-    }
+     stage('teste') {   
+       print "DEBUG: parameter Ambiente = ${env.URL_PCS}"
+     }
+        
+    
     
     
     stage('Validar Campos') {
