@@ -1,14 +1,5 @@
 node {
     
-      
-      
-    stage('teste') {   
-       print "DEBUG: parameter Ambient = ${env.Ambiente}"
-     }
-          
-      
-    
-    
     stage('Validar Campos') {
       
       if (params.Ambiente == '') {
