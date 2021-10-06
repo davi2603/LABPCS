@@ -6,7 +6,8 @@
   - name: Download file
     ansible.windows.win_powershell:
       script: C:\SCRIPTS\Nova_pasta\Sem título4.ps1 {{ name }}
-  
+    remote_src: yes
+     
   - name: Install PSCX
     win_psmodule:
       name: Pscx
