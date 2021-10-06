@@ -5,7 +5,7 @@
   tasks:
   - name: Download file
     ansible.windows.win_powershell:
-      script: C:\SCRIPTS\Nova_pasta\Sem título4.ps1 {{name}}
+      script: C:\SCRIPTS\Nova_pasta\Sem título4.ps1 {{ name }}
   
   - name: Install PSCX
     win_psmodule:
