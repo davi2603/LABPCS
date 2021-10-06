@@ -3,11 +3,9 @@
   hosts: all
   #remote_user: root
   tasks:
-          #  - name: Download earthrise.jpg to specified path
-          #    ansible.windows.win_get_url:
-          #      url: https://jdjudcvm.jdconsultores.com.br\download\JDPCS_Atua_20210517.zip
-          #      dest: C:\JDPCS\    
-  
+  - name: Download file
+    ansible.windows.win_powershell:
+      script: C:\SCRIPTS\Nova_pasta\Sem título4.ps1 params.URL_PCS
           
   - name: Install PSCX
     win_psmodule:
