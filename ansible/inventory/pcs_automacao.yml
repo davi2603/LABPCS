@@ -1,13 +1,11 @@
 ---
-
 - name: Update web servers
-  hosts: webservers
+  hosts: all
   #remote_user: root
   tasks:
-  - name: Download file
+  - name: Download arquivo atualizacao
     ansible.windows.win_powershell:
-      script: C:\SCRIPTS\Nova_pasta\Sem_título4.ps1 {{ name }}
-
+      script: C:\Deploy\Scripts\download_deploy.ps1 {{ name }}
       
      
   - name: Install PSCX
@@ -15,28 +13,24 @@
       name: Pscx
       state: present
       allow_clobber: True
-
-  - name: Create directory structure
+  - name: Criando pasta de Backup
     ansible.windows.win_file:
-      path: 'C:\Backup_{{ansible_date_time.date}}'
+      path: 'C:\Backup\Backup_{{ansible_date_time.date}}'
       state: directory
     register: find_result2
-
-  - name: Copy folder to C:\Temp (results in C:\Temp\temp_files)
+  - name: Copiando pasta base para Backup
     ansible.windows.win_copy:
       src: 'C:\JDPCS\'
-      dest: 'C:\Backup_{{ansible_date_time.date}}'
+      dest: 'C:\Backup\Backup_{{ansible_date_time.date}}'
       remote_src: yes
-
   - name: Compress a directory as the root of the archive
     community.windows.win_zip:
-      src: 'C:\Backup_{{ansible_date_time.date}}'
-      dest: 'C:\Backup_{{ansible_date_time.date}}.zip'
-
+      src: 'C:\Backup\Backup_{{ansible_date_time.date}}'
+      dest: 'C:\Backup\Backup_{{ansible_date_time.date}}.zip'
       
   - name: Find files with .war extension using powershell wildcards
     win_find:
-      paths: C:\JDPCS\Atualizacoes
+      paths: C:\Deploy\Atualizacoes
       patterns: ['*.zip']
       recurse: False
     register: find_result
@@ -44,41 +38,45 @@
   - name: Unzip a bz2 (BZip) file
     win_unzip:
       src: "{{ find_result.files[0].path }}"
-      dest: C:\JDPCS\Atualizacoes
+      dest: C:\Deploy\Atualizacoes
       recurse: yes
       delete_archive: no
     ignore_errors: yes
-
   - name: Stop a service
     ansible.windows.win_service:
       name: JDPCS_Receptor
       state: stopped
-
   - name: Stop a service
     ansible.windows.win_service:
       name: JDPCS_Transmissor
       state: stopped
-
-  - name: Run basic PowerShell script
+  - name: Stop ISS
     ansible.windows.win_powershell:
       script: |
         iisreset  /stop
       
   - name: Run basic PowerShell script
     ansible.windows.win_powershell:
-      script: C:\SCRIPTS\Nova_pasta\JDPCSDEPLOY.ps1
+      script: C:\Deploy\Scripts\JDPCSDEPLOY.ps1
       
-  - name: Run basic PowerShell script
+  - name: Start a service
+    ansible.windows.win_service:
+      name: JDPCS_Receptor
+      state: started
+  - name: Start a service
+    ansible.windows.win_service:
+      name: JDPCS_Transmissor
+      state: started      
+      
+  - name: START ISS
     ansible.windows.win_powershell:
       script: |
         iisreset  /start
       
-
   - name: Print return information from the previous task
     ansible.builtin.debug:
       msg: "{{ find_result2 }}"
       verbosity: 2
-
   - name: Ansible date fact example
     debug:  
       var=ansible_date_time.date      
