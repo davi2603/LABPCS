@@ -1,4 +1,5 @@
 ---
+hosts: webservers
 - name: Update web servers
   #remote_user: root
   tasks:
