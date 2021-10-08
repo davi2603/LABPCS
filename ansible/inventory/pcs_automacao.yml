@@ -1,6 +1,7 @@
 ---
-- hosts: webservers
+
 - name: Update web servers
+- hosts: webservers
   #remote_user: root
   tasks:
   - name: Download file
